@@ -10,7 +10,7 @@ Komposition und Delegation.
 |----------------|-----------------------------------------------------|
 | `Person`       | Verkäufer oder Bieter (Name, E-Mail)                |
 | `Item`         | Auktionsgegenstand mit Startpreis                   |
-| `Bid`          | Ein Gebot einer Person mit Betrag und Zeitstempel   |
+| `Bid`          | Ein Gebot einer Person mit Betrag                   |
 | `Auction`      | Eine Auktion für ein Item, verwaltet die Gebote     |
 | `AuctionHouse` | Verwaltet mehrere Auktionen                         |
 | `Demo`         | Main-Klasse mit Testszenario (Konsolenausgabe)      |

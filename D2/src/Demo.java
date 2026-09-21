@@ -15,6 +15,7 @@ public class Demo {
 
         System.out.println(house);
         System.out.println(auction);
+        System.out.println("Offene Auktionen: " + house.getOpenAuctions().size());
         System.out.println();
 
         // Alle Aufrufe gehen ans Haus und werden an Auction delegiert
@@ -30,11 +31,17 @@ public class Demo {
 
         System.out.println("\n" + house.closeAuction("A1"));
 
-        // Nach dem Schliessen sind keine Gebote mehr moeglich
+        // Nach dem Schliessen sind keine Gebote mehr möglich
         try {
             house.placeBid("A1", bidder1, 500);
         } catch (IllegalStateException e) {
             System.out.println("\nErwarteter Fehler: " + e.getMessage());
         }
+
+        System.out.println("\nOffene Auktionen nach dem Schliessen: " + house.getOpenAuctions().size());
+
+        // Komposition: Wird die Auktion aus dem Haus entfernt, gehoert sie nicht mehr dazu
+        house.removeAuction("A1");
+        System.out.println(house);
     }
 }

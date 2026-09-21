@@ -1,22 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * HAT-Beziehung in dieser Klasse:
+ * - Komposition: auctions. Das Auktionshaus erzeugt seine Auktionen selbst
+ *   (new Auction in createAuction). Eine Auktion gibt es nur im Haus.
+ * -Delegation: placeBid und closeAuction geben den Aufruf an Auction weiter.
+ */
 public class AuctionHouse {
 
     private final String name;
-    private final List<Auction> auctions = new ArrayList<>(); // Komposition
+    private final List<Auction> auctions = new ArrayList<>();
 
     public AuctionHouse(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
     /** Erzeugt eine neue Auktion (Komposition) und speichert sie im Haus. */
     public Auction createAuction(String auctionId, Item item, Person seller) {
-        Auction auction = new Auction(auctionId, item, seller);
+        Auction auction = new Auction(auctionId, item, seller); // Komposition: Haus erzeugt Auction selbst
         auctions.add(auction);
         return auction;
     }

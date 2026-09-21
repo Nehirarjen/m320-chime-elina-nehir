@@ -2,14 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * HAT-Beziehungen in dieser Klasse:
+ * - Aggregation: item und seller. Sie werden im Konstruktor übergeben und
+ *   existieren auch ohne diese Auktion weiter.
+ * - Komposition: bids. Die Auktion erzeugt ihre Gebote selbst (new Bid).
+ *   Ein Gebot gibt es nur innerhalb einer Auktion.
+ * - Abhängigkeit: placeBid benutzt die Person nur als Parameter.
+ */
 public class Auction {
 
     private final String id;
-    private final Item item;                          // Aggregation
-    private final Person seller;                       // Aggregation
-    private final List<Bid> bids = new ArrayList<>();  // Komposition
+    private final Item item;
+    private final Person seller;
+    private final List<Bid> bids = new ArrayList<>();
     private boolean closed = false;
 
+    // Aggregation: item und seller werden von aussen übergeben (kein "new")
     Auction(String id, Item item, Person seller) {
         this.id = id;
         this.item = item;
@@ -20,19 +29,12 @@ public class Auction {
         return id;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public Person getSeller() {
-        return seller;
-    }
-
     public boolean isClosed() {
         return closed;
     }
 
-    /** Nimmt ein Gebot an, wenn es hoeher ist als das bisherige. */
+    /** Nimmt ein Gebot an, wenn es hoeher ist als das bisherige.
+     *  Abhängigkeit: bidder wird nur als Parameter benutzt, nicht gespeichert. */
     public boolean placeBid(Person bidder, double amount) {
         if (closed) {
             throw new IllegalStateException(
@@ -52,7 +54,7 @@ public class Auction {
         return bids.stream().max((a, b) -> Double.compare(a.getAmount(), b.getAmount()));
     }
 
-    /** Gibt eine Kopie der Liste zurueck, damit sie von aussen nicht veraendert wird. */
+    /** Gibt eine Kopie der Liste zurueck, damit sie von aussen nicht verändert wird. */
     public List<Bid> getBids() {
         return new ArrayList<>(bids);
     }
