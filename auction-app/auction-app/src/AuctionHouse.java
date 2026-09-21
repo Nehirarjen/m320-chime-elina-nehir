@@ -1,19 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Das Auktionshaus verwaltet alle Auktionen.
- *
- * HAT-Beziehung: auctions (List&lt;Auction&gt;) ist eine KOMPOSITION.
- * AuctionHouse erzeugt seine Auction-Objekte selbst in createAuction(...);
- * in diesem Modell gibt es keine Auction ausserhalb eines AuctionHouse.
- *
- * Delegation: placeBid(...) und closeAuction(...) suchen zuerst die
- * passende Auktion und geben den eigentlichen Aufruf dann an das
- * gefundene Auction-Objekt weiter. Der Aufrufer (z.B. die Demo-Klasse)
- * muss die interne Struktur (Bid, Person) gar nicht kennen - das
- * AuctionHouse delegiert die Arbeit einfach weiter.
- */
 public class AuctionHouse {
 
     private final String name;
@@ -27,7 +14,7 @@ public class AuctionHouse {
         return name;
     }
 
-    /** Erzeugt eine neue Auktion und registriert sie im Haus (Komposition). */
+    /** Erzeugt eine neue Auktion (Komposition) und speichert sie im Haus. */
     public Auction createAuction(String auctionId, Item item, Person seller) {
         Auction auction = new Auction(auctionId, item, seller);
         auctions.add(auction);
@@ -42,17 +29,16 @@ public class AuctionHouse {
                         "Auktion " + auctionId + " nicht gefunden."));
     }
 
-    /** Delegiert direkt an Auction.placeBid(...). */
+    /** Delegation: gibt den Aufruf an Auction.placeBid weiter. */
     public boolean placeBid(String auctionId, Person bidder, double amount) {
         return findAuction(auctionId).placeBid(bidder, amount);
     }
 
-    /** Delegiert an Auction.close(...). */
+    /** Delegation: gibt den Aufruf an Auction.close weiter. */
     public String closeAuction(String auctionId) {
         return findAuction(auctionId).close();
     }
 
-    /** Entfernt eine Auktion vollstaendig aus dem Haus. */
     public boolean removeAuction(String auctionId) {
         return auctions.removeIf(a -> a.getId().equals(auctionId));
     }

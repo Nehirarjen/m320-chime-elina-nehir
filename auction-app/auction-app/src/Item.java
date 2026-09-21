@@ -1,12 +1,4 @@
-/**
- * Ein Auktionsgegenstand (z.B. ein Notebook, ein Bild, ein Sammlerstueck).
- *
- * Wie Person ist auch Item ein eigenstaendiges Objekt: Der physische
- * Gegenstand existiert unabhaengig davon, ob er gerade in einer Auktion
- * angeboten wird oder nicht. Auction haelt daher nur eine Referenz auf
- * ein bereits existierendes Item (AGGREGATION), erzeugt es aber nicht
- * selbst.
- */
+
 public class Item {
 
     private final String id;
