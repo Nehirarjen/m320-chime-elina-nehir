@@ -1,5 +1,24 @@
+/**
+ * Demo für D2: zeigt Aggregation, Komposition und Delegation an einer
+ * Beispiel-Auktion.
+ * <p>
+ * Ablauf: Auktionshaus, Personen und Gegenstand anlegen, eine Auktion
+ * erstellen, Gebote abgeben, die Auktion schliessen und wieder entfernen.
+ * Die Ausgabe erscheint in der Konsole.
+ *
+ * @see AuctionHouse
+ */
 public class Demo {
 
+    private Demo() {
+        // Wird nur über main gestartet, nicht instanziiert
+    }
+
+    /**
+     * Startet die Demo.
+     *
+     * @param args wird nicht verwendet
+     */
     public static void main(String[] args) {
         AuctionHouse house = new AuctionHouse("TBZ Online Auktionen");
 
