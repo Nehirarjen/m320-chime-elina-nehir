@@ -1,8 +1,22 @@
 # Q2 – JavaDoc
 
+## Worum geht es?
+
+Q2 verlangt, dass der Code mit einem Dokumentationswerkzeug (JavaDoc)
+dokumentiert ist und die Kommentare den Code-Konventionen entsprechen. Aus den
+Kommentaren im Code erzeugt `javadoc` automatisch HTML-Seiten. Dabei ist die
+Frage wichtig, *was* man kommentiert und wann ein Kommentar überhaupt Sinn macht.
+
 Grundlage ist der Code von Niveau 2 (Ordner `D2`, Auktions-App). Alle sechs
 Klassen sind mit JavaDoc dokumentiert: `Auction`, `AuctionHouse`, `Bid`,
 `Item`, `Person` und `Demo`.
+
+## Zusammenfassung: Was genau wurde kommentiert?
+
+Bei allen sechs Klassen wurde alles kommentiert, was von aussen sichtbar ist
+(Klasse, Konstruktoren und Methoden), mit Zweck, Parametern, Rückgabewert,
+Fehlerfällen und der jeweiligen HAT-Beziehung. Nicht kommentiert sind die
+privaten Attribute und selbsterklärende Zeilen.
 
 ## JavaDoc erzeugen
 
