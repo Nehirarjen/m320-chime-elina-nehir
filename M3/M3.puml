@@ -1,0 +1,56 @@
+@startuml
+title M3 – Klassendiagramm: Kaffeebestellung
+
+top to bottom direction
+skinparam nodesep 10
+
+hide empty members
+class Bestellung {
+  - nummer: String
+  - bestätigt: boolean
+  + fügeHinzu(kaffee: Kaffee, anzahl: int): void
+  + entfernePosition(position: Bestellposition): void
+  + berechneZwischentotal(): double
+  + bestätigen(zahlungsart: Zahlungsart): Zahlungsbestätigung
+}
+class Bestellposition {
+  - anzahl: int
+  + berechnePreis(): double
+}
+class Zahlungsbestätigung {
+  - erfolgreich: boolean
+  - betrag: double
+  - meldung: String
+}
+abstract class Kaffee {
+  - name: String
+  - grundpreis: double
+  + getPreis(): double
+}
+class CafeMisto
+class CafeLatte
+class Decaf
+interface Zahlungsart {
+  + berechneGebühr(zwischenbetrag: double): double
+  + bezahlen(betrag: double): Zahlungsbestätigung
+}
+class KreditkartenZahlung {
+  - gebührSatz: double
+}
+class PostfinanceZahlung {
+  - fixeGebühr: double
+}
+class DebitCardZahlung {
+  - gebührSatz: double
+}
+Bestellung "1" *-- "1..*" Bestellposition : besteht aus
+Bestellposition "*" --> "1" Kaffee : bestellt
+Bestellung --> Zahlungsart : verwendet beim Bestätigen
+Bestellung ..> Zahlungsbestaetigung : erzeugt
+CafeMisto --|> Kaffee
+CafeLatte --|> Kaffee
+Decaf --|> Kaffee
+KreditkartenZahlung ..|> Zahlungsart
+PostfinanceZahlung ..|> Zahlungsart
+DebitCardZahlung ..|> Zahlungsart
+@enduml

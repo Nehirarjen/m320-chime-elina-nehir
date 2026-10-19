@@ -1,4 +1,4 @@
-# V3 – Service-Verwaltung
+# V2 – Service-Verwaltung
 
 Konsolenprogramm zur Übung von **Vererbung**, **abstrakten Klassen**, **Methodenüberschreibung**, **Polymorphismus** und **Exception Handling**.
 
