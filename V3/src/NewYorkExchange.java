@@ -2,20 +2,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Die Börse New York. Preise in USD (erfundene Beispielwerte).
- * <p>
- * Novartis ist hier auch kotiert, aber zu einem anderen Preis als in Zürich.
- */
 public class NewYorkExchange implements StockExchange {
 
     private final Map<String, Double> prices = new LinkedHashMap<>();
 
     public NewYorkExchange() {
-        prices.put("AAPL", 225.00);  // Apple
-        prices.put("MSFT", 410.00);  // Microsoft
-        prices.put("KO", 62.30);     // Coca-Cola
-        prices.put("NOVN", 98.50);   // Novartis
+        prices.put("AAPL", 225.00);
+        prices.put("MSFT", 410.00);
+        prices.put("KO", 62.30);
+        prices.put("NOVN", 98.50);
     }
 
     @Override

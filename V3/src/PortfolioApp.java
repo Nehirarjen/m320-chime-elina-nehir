@@ -1,13 +1,11 @@
 import java.util.List;
 import java.util.Scanner;
 
-/** Konsolenmenü: Börse wählen, Portfolio-Wert und Aktienkurse abfragen. */
 public class PortfolioApp {
 
     private static final Scanner EINGABE = new Scanner(System.in);
 
     public static void main(String[] args) {
-        // Alle Börsen stehen als Interface-Typ in einer Liste
         List<StockExchange> exchanges = List.of(
                 new ZurichExchange(),
                 new LondonExchange(),
@@ -20,7 +18,6 @@ public class PortfolioApp {
         portfolio.add(new Stock("SHEL", "Shell"), 15);
         portfolio.add(new Stock("AAPL", "Apple"), 8);
 
-        // Die aktuelle Börse ist nur vom Typ StockExchange
         StockExchange current = exchanges.get(0);
 
         boolean laeuft = true;
@@ -61,7 +58,6 @@ public class PortfolioApp {
     }
 
     private static void wertAnzeigen(Portfolio portfolio, StockExchange exchange) {
-        // Das Portfolio bekommt irgendeine Börse. Welche, muss es nicht wissen.
         double wert = portfolio.getValue(exchange);
         System.out.printf("Wert des Portfolios in %s: %.2f %s%n",
                 exchange.getName(), wert, exchange.getCurrency());

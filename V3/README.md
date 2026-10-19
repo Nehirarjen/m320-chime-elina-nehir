@@ -67,6 +67,28 @@ wurde. Bei `ZurichExchange` kommt ein CHF-Preis, bei `NewYorkExchange` ein
 USD-Preis. Die Variable hat den Typ `StockExchange`, das Verhalten kommt vom
 tatsächlichen Objekt. Das ist Polymorphismus über ein Interface.
 
+## Interface statt Vererbung
+
+Man könnte die Börsen auch über Vererbung lösen: eine Oberklasse `Boerse`,
+von der `ZurichExchange`, `LondonExchange` und `NewYorkExchange` erben. Das
+Interface ist hier die bessere Wahl:
+
+| | Vererbung (`extends`) | Interface (`implements`) |
+|---|---|---|
+| Wie viele davon? | Eine Klasse kann nur von **einer** Oberklasse erben | Eine Klasse kann **mehrere** Interfaces umsetzen |
+| Was wird festgelegt? | Zustand und Code werden geerbt, die Klassen sind eng verbunden | Nur der Vertrag (welche Methoden), jede Klasse schreibt ihren Code selbst |
+| Neue Börse | Muss in die Hierarchie passen und erbt auch Dinge, die sie nicht braucht | Muss nur die fünf Methoden liefern und kann sonst von irgendwo erben |
+| `Portfolio` | Wäre an die Oberklasse `Boerse` gebunden | Kennt nur `StockExchange` und bleibt unverändert |
+
+Beispiel: Eine Börse, die ihre Preise aus einer Datei oder einem Webdienst
+lädt, könnte schon von einer anderen Klasse erben. Mit Vererbung wäre sie
+blockiert, mit dem Interface funktioniert sie trotzdem.
+
+**Faustregel:** Vererbung passt, wenn etwas *ist* ein Spezialfall einer
+anderen Klasse (ein Auto ist ein Fahrzeug). Ein Interface passt, wenn Klassen
+dasselbe *können* sollen, aber sonst nichts gemeinsam haben müssen (jede
+Börse kann Preise liefern).
+
 ## Wo im Code?
 
 | Was | Wo |

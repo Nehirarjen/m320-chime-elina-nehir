@@ -1,4 +1,3 @@
-/** Eine Position im Portfolio: eine Aktie und wie viele Stück davon. */
 public class Position {
 
     private final Stock stock;

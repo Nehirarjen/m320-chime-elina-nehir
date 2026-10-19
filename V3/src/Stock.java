@@ -1,4 +1,3 @@
-/** Eine Aktie mit Symbol (z.B. "NESN") und Namen (z.B. "Nestlé"). */
 public class Stock {
 
     private final String symbol;

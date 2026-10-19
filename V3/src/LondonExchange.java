@@ -2,15 +2,14 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-/** Die Börse London. Preise in GBP (erfundene Beispielwerte). */
 public class LondonExchange implements StockExchange {
 
     private final Map<String, Double> prices = new LinkedHashMap<>();
 
     public LondonExchange() {
-        prices.put("SHEL", 26.40);   // Shell
-        prices.put("HSBA", 6.80);    // HSBC
-        prices.put("AZN", 108.20);   // AstraZeneca
+        prices.put("SHEL", 26.40);
+        prices.put("HSBA", 6.80);
+        prices.put("AZN", 108.20);
     }
 
     @Override
