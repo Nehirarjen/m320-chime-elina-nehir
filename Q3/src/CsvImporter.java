@@ -5,26 +5,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Liest eine CSV-Datei und füllt das {@link AirportRepository}.
- * <p>
- * Die Spalten werden über die Kopfzeile gefunden: Pflicht sind eine Code-Spalte
- * ("AIRPORT CODE", "CODE" oder "IATA") und eine Name-Spalte ("AIRPORT" oder
- * "NAME"). Optional sind "CITY" und "STATE". Ungültige Zeilen brechen den
- * Import nicht ab, sie werden übersprungen und im Ergebnis gemeldet.
- */
+/** Liest die CSV-Datei ein und legt die Flughäfen im Repository ab. */
 public class CsvImporter {
 
-    /** Ergebnis eines Imports mit Zählern und Meldungen zu übersprungenen Zeilen. */
     public record Result(int imported, int skipped, int duplicates, List<String> messages) {
     }
 
     private CsvImporter() {
     }
 
-    /**
-     * @throws IOException wenn die Datei nicht lesbar ist oder die Kopfzeile nicht passt
-     */
     public static Result importFrom(Path file, AirportRepository repository) throws IOException {
         List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
 
@@ -98,7 +87,6 @@ public class CsvImporter {
         return column >= 0 && column < fields.size() ? fields.get(column) : "";
     }
 
-    /** Teilt eine Zeile an Kommas auf. Kommas in Anführungszeichen trennen nicht. */
     static List<String> splitLine(String line) {
         List<String> fields = new ArrayList<>();
         StringBuilder current = new StringBuilder();

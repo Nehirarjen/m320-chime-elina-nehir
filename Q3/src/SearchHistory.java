@@ -2,15 +2,9 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
-/**
- * Merkt sich die letzten 10 Suchen nach Flughafen-Code (gefunden oder nicht).
- * <p>
- * Der neueste Eintrag steht vorne (Deque: vorne einfügen, hinten entfernen).
- * Dieselbe Suche direkt nach der vorherigen wird nicht nochmals gespeichert.
- */
+/** Merkt sich die letzten 10 Suchen nach Flughafen-Code. */
 public class SearchHistory {
 
-    /** Eine gespeicherte Suche. */
     public record Entry(String code, boolean found) {
     }
 
@@ -32,7 +26,6 @@ public class SearchHistory {
         }
     }
 
-    /** Kopie der Einträge, die neueste Suche zuerst. */
     public List<Entry> latestFirst() {
         return List.copyOf(entries);
     }

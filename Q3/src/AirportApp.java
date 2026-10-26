@@ -3,12 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-/**
- * Startklasse: importiert die CSV-Datei und startet das Menü.
- * <p>
- * Die Datei wird als erstes Argument übergeben. Ohne Argument wird
- * airports.csv an den üblichen Orten gesucht (Projektordner, Q3, Q3/src).
- */
+/** Startet das Programm, importiert die CSV-Datei und öffnet das Menü. */
 public class AirportApp {
 
     public static void main(String[] args) {

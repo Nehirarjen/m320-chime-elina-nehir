@@ -9,10 +9,9 @@ import java.util.Optional;
 import java.util.TreeMap;
 import java.util.function.Function;
 
-/** Statistische Auswertungen über alle gespeicherten Flughäfen (Teil B, Punkt 7). */
+/** Berechnet Statistiken über alle gespeicherten Flughäfen. */
 public class AirportStatistics {
 
-    /** Ein Wert und wie oft er vorkommt. */
     public record Count(String value, int count) {
     }
 
@@ -26,23 +25,14 @@ public class AirportStatistics {
         return repository.size();
     }
 
-    /** Stadt mit den meisten Flughäfen. Leer, wenn die Daten keine Städte enthalten. */
     public Optional<Count> mostFrequentCity() {
         return mostFrequent(Airport::city);
     }
 
-    /** Staat mit den meisten Flughäfen. Leer, wenn die Daten keine Staaten enthalten. */
     public Optional<Count> mostFrequentState() {
         return mostFrequent(Airport::state);
     }
 
-    /**
-     * Algorithmus: häufigster Wert eines Felds.
-     * Durchlaufen wird jeder Flughafen. Sein Feldwert (Stadt oder Staat) wird
-     * in einer Hilfs-Map hochgezählt, leere Werte zählen nicht. Danach wird
-     * der Eintrag mit dem grössten Zähler gesucht. Bei Gleichstand gewinnt
-     * der alphabetisch frühere Wert, damit das Ergebnis immer gleich ist.
-     */
     private Optional<Count> mostFrequent(Function<Airport, String> field) {
         Map<String, Integer> counts = new HashMap<>();
         for (Airport airport : repository.getAll()) {
@@ -63,14 +53,6 @@ public class AirportStatistics {
         return Optional.ofNullable(best);
     }
 
-    /**
-     * Algorithmus: doppelte Flughafen-Namen finden.
-     * Durchlaufen wird jeder Flughafen. Er wird unter seinem Namen (klein
-     * geschrieben) in eine Gruppe einsortiert. Danach bleiben nur Gruppen mit
-     * mehr als einem Flughafen übrig. Ergebnis: Name und die zugehörigen
-     * Codes (alphabetisch). Die Codes selbst sind nie doppelt, das verhindert
-     * die HashMap.
-     */
     public Map<String, List<String>> duplicateNames() {
         Map<String, List<Airport>> groups = new TreeMap<>();
         for (Airport airport : repository.getAll()) {
@@ -92,11 +74,6 @@ public class AirportStatistics {
         return result;
     }
 
-    /**
-     * Eigene Statistik: Wie viele Flughäfen beginnen mit welchem Buchstaben
-     * im Code? Durchlaufen wird jeder Flughafen, der erste Buchstabe des
-     * Codes wird hochgezählt. Die TreeMap sortiert die Buchstaben.
-     */
     public Map<Character, Integer> countByFirstLetter() {
         Map<Character, Integer> counts = new TreeMap<>();
         for (Airport airport : repository.getAll()) {

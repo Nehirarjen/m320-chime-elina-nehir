@@ -1,14 +1,7 @@
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-/**
- * Ein Flughafen. Das Objekt ist unveränderlich (record): Zum Ändern wird ein
- * neues Airport-Objekt erzeugt und in der HashMap ersetzt.
- * <p>
- * Der Code wird immer getrimmt und in Grossbuchstaben gespeichert ("jfk" wird
- * zu "JFK"). Stadt und Staat sind optional, weil nicht jede CSV-Datei sie hat.
- * Fehlt ein Wert, ist er ein leerer String (nie null).
- */
+/** Ein Flughafen mit Code, Name und optional Stadt und Staat. */
 public record Airport(String code, String name, String city, String state) {
 
     private static final Pattern CODE_FORMAT = Pattern.compile("[A-Z]{3}");
@@ -26,7 +19,6 @@ public record Airport(String code, String name, String city, String state) {
         state = clean(state);
     }
 
-    /** Macht aus der Eingabe einen Schlüssel: trimmen und gross schreiben. null wird zu "". */
     public static String normalizeCode(String code) {
         return code == null ? "" : code.trim().toUpperCase(Locale.ROOT);
     }

@@ -3,14 +3,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
-/**
- * Konsolenmenü. Diese Klasse liest Eingaben und gibt Text aus. Die eigentliche
- * Arbeit machen {@link AirportRepository}, {@link AirportAlgorithms} und
- * {@link AirportStatistics}.
- */
+/** Zeigt das Konsolenmenü und liest die Eingaben des Benutzers. */
 public class UserInterface {
 
-    /** Wird geworfen, wenn die Eingabe zu Ende ist (z.B. Ctrl+D), damit das Programm sauber endet. */
     private static class InputEnded extends RuntimeException {
         private static final long serialVersionUID = 1L;
     }
@@ -231,7 +226,6 @@ public class UserInterface {
         }
     }
 
-    /** Fragt nach Text. Leere oder ungültige Eingaben sind erlaubt und werden von den Aufrufern geprüft. */
     private String ask(String prompt) {
         System.out.print(prompt);
         if (!input.hasNextLine()) {
@@ -245,7 +239,6 @@ public class UserInterface {
         return answer.isEmpty() ? currentValue : answer;
     }
 
-    /** Liest eine ganze Zahl. Bei Text statt Zahl wird -1 geliefert, das Menü meldet es dann. */
     private int readNumber(String prompt) {
         try {
             return Integer.parseInt(ask(prompt));
