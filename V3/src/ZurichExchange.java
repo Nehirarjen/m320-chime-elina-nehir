@@ -2,7 +2,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ZurichExchange implements StockExchange {
+public class ZurichExchange implements StockExchange { // interface in einer bärse umsetzen
 
     private final Map<String, Double> prices = new LinkedHashMap<>();
 

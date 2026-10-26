@@ -6,7 +6,7 @@ public class PortfolioApp {
     private static final Scanner EINGABE = new Scanner(System.in);
 
     public static void main(String[] args) {
-        List<StockExchange> exchanges = List.of(
+        List<StockExchange> exchanges = List.of( // verschiedene Börse unter einem Typ
                 new ZurichExchange(),
                 new LondonExchange(),
                 new NewYorkExchange());
@@ -18,7 +18,7 @@ public class PortfolioApp {
         portfolio.add(new Stock("SHEL", "Shell"), 15);
         portfolio.add(new Stock("AAPL", "Apple"), 8);
 
-        StockExchange current = exchanges.get(0);
+        StockExchange current = exchanges.get(0); // Börse wechselt zur Laufzeit
 
         boolean laeuft = true;
         while (laeuft) {

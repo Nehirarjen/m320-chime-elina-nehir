@@ -13,12 +13,12 @@ public class Portfolio {
         return new ArrayList<>(positions);
     }
 
-    public double getValue(StockExchange exchange) {
+    public double getValue(StockExchange exchange) { // interface aufnehmen
         double sum = 0;
         for (Position p : positions) {
             String symbol = p.getStock().getSymbol();
             if (exchange.isListed(symbol)) {
-                sum += p.getQuantity() * exchange.getPrice(symbol);
+                sum += p.getQuantity() * exchange.getPrice(symbol);  // polymorph aufruf
             }
         }
         return sum;
